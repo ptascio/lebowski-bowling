@@ -1,7 +1,7 @@
 
 class Enemy {
   constructor(){
-    super();
+
   }
 
   moveDown(){

@@ -28,8 +28,6 @@
 .nme-shape {
   height: 30px;
   width: 10px;
-  top: 20px;
-  left: 100px;
   border-radius: 50%;
   background: black;
   position: relative;

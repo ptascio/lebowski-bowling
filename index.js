@@ -41,7 +41,7 @@ function createEnemy(){
   nme.style.left = nmeLeft + "px";
   enemies.push(nme);
   arena.appendChild(nme);
-  return enemies;
+  return nme;
 }
 
 function genNmeLeft(){
@@ -56,7 +56,7 @@ function moveEnemy(shape){
   let thisTop = parseInt(shape.attributes.top.nodeValue);
 
   if (moveNmeDown){
-    thisTop += 0.5;
+    thisTop += 1;
   }
   shape.setAttribute("top", thisTop);
   shape.style.top = thisTop + "px";
@@ -177,9 +177,9 @@ function toggleGo(){
 //create a new enemy
 //append to DOM
 //start it moving
-window.setInterval(() => {
-  createEnemy();
-}, 4000);
+// window.setInterval(() => {
+//   createEnemy();
+// }, 4000);
 
 function moveEm(nmes){
   for(var i = 0; i < nmes.length; i++){
@@ -189,9 +189,9 @@ function moveEm(nmes){
 }
 
 let requestId;
+let sshape = createEnemy();
  function mainLoop(){
-
-   moveEnemy(enemies[0]);
+   moveEnemy(sshape);
   //  clash(enemies[0]);
    moveObjX();
    requestId = window.requestAnimationFrame(mainLoop);
@@ -220,7 +220,7 @@ let requestId;
   }
 
   function start(){
-    createEnemy();
+
     if (!requestId){
       mainLoop();
     }
