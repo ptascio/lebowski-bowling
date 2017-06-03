@@ -9,8 +9,8 @@ let scoreCount = 30;
 score.innerHTML = "Score: " + scoreCount;
 let wdthSwitch = true;
 
-let num = 20;
-let topper = 20;
+let num = 250;
+let topper = 250;
 let switchUp;
 let increasing;
 let left;
@@ -41,7 +41,6 @@ function createEnemy(){
   nme.style.left = nmeLeft + "px";
   enemies.push(nme);
   arena.appendChild(nme);
-  return nme;
 }
 
 function genNmeLeft(){
@@ -91,16 +90,16 @@ function moveObjX(){
     topper += 100;
   }
   if (right){
-    num+=1;
+    num+=2;
   }
   if (left){
-    num-=1;
+    num-=2;
   }
   if(up){
-    topper-=1;
+    topper-=2;
   }
   if(down){
-    topper+=1;
+    topper+=2;
   }
   ball.style.left = num + "px";
   ball.style.top = topper + "px";
@@ -201,22 +200,29 @@ let sshape = createEnemy();
   }
 
   function clash(shapes){
-    let rightSide = num - 10;
-    let leftSide = num + 40;
+    let rightSide = num - 5;
+    let leftSide = num + 45;
     for (var i = 0; i < shapes.length; i++){
     let shape = shapes[i];
     let shapeTopper = parseInt(shape.attributes.top.nodeValue);
     let insideLeftNum = parseInt(shape.attributes.leftnum.nodeValue);
-    if ((shapeTopper >= (topper - 30)) && (insideLeftNum >= rightSide && insideLeftNum <= leftSide)){
-      removeEnemy(shape);
-    }else if (shapeTopper >= 310) {
-      removeEnemy(shape);
+    if ((shapeTopper >= (topper - 30) && (shapeTopper <= (topper + 10)) ) && (insideLeftNum >= rightSide && insideLeftNum <= leftSide)){
+      hideEnemy(shape);
+    }else if (shapeTopper >= 320) {
+      hideEnemy(shape);
     }
     }
   }
 
-  function removeEnemy(shape){
+  function hideEnemy(shape){
     shape.style.display = "none";
+    removeEnemy(shape);
+  }
+
+  function removeEnemy(shape){
+    if (shape.parentElement) {
+      shape.parentElement.removeChild(shape);
+    }
   }
 
   function start(){
