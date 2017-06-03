@@ -30,7 +30,7 @@
   width: 10px;
   border-radius: 50%;
   background: black;
-  position: relative;
+  position: absolute;
 }
 
 .nme-gone {

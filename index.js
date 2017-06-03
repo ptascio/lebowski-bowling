@@ -52,7 +52,9 @@ function genNmeLeft(){
 
 
 
-function moveEnemy(shape){
+function moveEnemy(shapes){
+  for (var i = 0; i < shapes.length; i++){
+  let shape = shapes[i];
   let thisTop = parseInt(shape.attributes.top.nodeValue);
 
   if (moveNmeDown){
@@ -60,6 +62,7 @@ function moveEnemy(shape){
   }
   shape.setAttribute("top", thisTop);
   shape.style.top = thisTop + "px";
+  }
 }
 
 function moveObjX(){
@@ -177,9 +180,9 @@ function toggleGo(){
 //create a new enemy
 //append to DOM
 //start it moving
-// window.setInterval(() => {
-//   createEnemy();
-// }, 4000);
+window.setInterval(() => {
+  createEnemy();
+}, 4000);
 
 function moveEm(nmes){
   for(var i = 0; i < nmes.length; i++){
@@ -191,7 +194,7 @@ function moveEm(nmes){
 let requestId;
 let sshape = createEnemy();
  function mainLoop(){
-   moveEnemy(sshape);
+   moveEnemy(enemies);
   //  clash(enemies[0]);
    moveObjX();
    requestId = window.requestAnimationFrame(mainLoop);
