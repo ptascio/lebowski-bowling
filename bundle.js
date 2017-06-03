@@ -63,36 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const GameView = __webpack_require__(1);
-let gameView;
-let ball;
- document.addEventListener("DOMContentLoaded", () => {
-  gameView = new GameView(540, 340);
-  gameView.drawArena();
-  gameView.drawBall();
- });
-
-document.addEventListener("keydown", function(e){
-  if (e.keyCode === 39){
-    gameView.ball.gogoRight();
-  } else if (e.keyCode === 37){
-    gameView.ball.gogoLeft();
-  }
-});
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const Ball = __webpack_require__(2);
+const Ball = __webpack_require__(1);
 
 class GameView {
   constructor(){
@@ -125,7 +103,7 @@ module.exports = GameView;
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports) {
 
 class Ball {
@@ -316,6 +294,28 @@ class Ball {
 }
 
 module.exports = Ball;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const GameView = __webpack_require__(0);
+let gameView;
+let ball;
+ document.addEventListener("DOMContentLoaded", () => {
+  gameView = new GameView(540, 340);
+  gameView.drawArena();
+  gameView.drawBall();
+ });
+
+document.addEventListener("keydown", function(e){
+  if (e.keyCode === 39){
+    gameView.ball.gogoRight();
+  } else if (e.keyCode === 37){
+    gameView.ball.gogoLeft();
+  }
+});
 
 
 /***/ })

@@ -3,6 +3,7 @@ const arena = document.getElementById("arena");
 const arenaStyle = window.getComputedStyle(arena);
 const time = document.getElementById("time");
 const score = document.getElementById("score");
+
 let enemies = [];
 let scoreCount = 30;
 score.innerHTML = "Score: " + scoreCount;
@@ -29,9 +30,10 @@ let nmeBottom = 0;
 let nmeRight = 10;
 let nmeLeft;
 function createEnemy(){
+  nmeTopper = -50;
+  let hi = new Enemy ({top: nmeTopper});
   let nme = document.createElement("div");
   nmeLeft = genNmeLeft();
-  nmeTopper = -50;
   nme.style.top = nmeTopper + "px";
   nme.style.right = nmeRight;
   nme.style.bottom = nmeBottom;
@@ -179,7 +181,7 @@ function toggleGo(){
 //start it moving
 window.setInterval(() => {
   createEnemy();
-}, 2000);
+}, 4000);
 
 function moveEm(nmes){
   for(var i = 0; i < nmes.length; i++){
