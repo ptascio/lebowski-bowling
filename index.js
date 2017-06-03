@@ -19,7 +19,7 @@ let up;
 let down;
 let go = true;
 let crrntNme;
-var hi = document.registerElement("this-nme", Enemy);
+
 
 
 
@@ -31,8 +31,8 @@ let nmeRight = 10;
 let nmeLeft;
 function createEnemy(){
   nmeTopper = -50;
-  let nme = new Enemy;
-  // let nme = document.createElement("div");
+
+  let nme = document.createElement("div");
   nmeLeft = genNmeLeft();
   nme.style.top = nmeTopper + "px";
   nme.setAttribute("class", "nme-shape");
