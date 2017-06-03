@@ -182,7 +182,7 @@ function toggleGo(){
 //start it moving
 window.setInterval(() => {
   createEnemy();
-}, 4000);
+}, 2000);
 
 function moveEm(nmes){
   for(var i = 0; i < nmes.length; i++){
@@ -195,31 +195,28 @@ let requestId;
 let sshape = createEnemy();
  function mainLoop(){
    moveEnemy(enemies);
-  //  clash(enemies[0]);
+  clash(enemies);
    moveObjX();
    requestId = window.requestAnimationFrame(mainLoop);
   }
 
-  function clash(shape){
+  function clash(shapes){
     let rightSide = num - 10;
-    let leftSide = num + 35;
+    let leftSide = num + 40;
+    for (var i = 0; i < shapes.length; i++){
+    let shape = shapes[i];
+    let shapeTopper = parseInt(shape.attributes.top.nodeValue);
     let insideLeftNum = parseInt(shape.attributes.leftnum.nodeValue);
-    if ((nmeTopper >= (topper - 30)) && (insideLeftNum >= rightSide && insideLeftNum <= leftSide)){
-
+    if ((shapeTopper >= (topper - 30)) && (insideLeftNum >= rightSide && insideLeftNum <= leftSide)){
       removeEnemy(shape);
-    }else if (nmeTopper >= 310) {
+    }else if (shapeTopper >= 310) {
       removeEnemy(shape);
+    }
     }
   }
 
   function removeEnemy(shape){
-    moveNmeDown = false;
-    shape.setAttribute=("class", "nme-gone");
-    arena.removeChild(shape);
-    nme1 = createEnemy();
-    nmeTopper = -50;
-    arena.appendChild(nme1);
-    moveNmeDown = true;
+    shape.style.display = "none";
   }
 
   function start(){
