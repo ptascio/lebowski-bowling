@@ -6,7 +6,9 @@
   position: absolute;
   top: 20px;
   border: 1px solid #000;
-  background: red;
+  background: url('./images/starterball.jpeg');
+  background-position: center;
+  background-size: 48px 48px;
 }
 
 .arena-dim {
@@ -15,6 +17,7 @@
   border: 1px solid #000;
   display: block;
   margin: 0 auto;
+  background: red;
 
 }
 
@@ -28,10 +31,12 @@
 }
 
 .nme-shape {
-  height: 30px;
-  width: 10px;
-  border-radius: 50%;
-  background: black;
+  height: 42px;
+  width: 42px;
+  border-radius: 70%;
+  background: url('./images/goodpin.jpeg');
+  background-position: center;
+  background-size: 40px 40px;
   position: absolute;
 }
 
