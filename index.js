@@ -3,7 +3,7 @@ const arena = document.getElementById("arena");
 const arenaStyle = window.getComputedStyle(arena);
 const time = document.getElementById("time");
 const score = document.getElementById("score");
-
+console.log(arenaStyle.width);
 let enemies = [];
 let scoreCount = 30;
 score.innerHTML = "Score: " + scoreCount;
@@ -65,7 +65,7 @@ function moveEnemy(shapes){
 }
 
 function moveObjX(){
-  if (num >= 500){
+  if (num >= 545){
     decreasePoints();
     left = true;
     right = false;
