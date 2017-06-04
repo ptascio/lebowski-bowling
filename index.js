@@ -3,13 +3,16 @@ const arena = document.getElementById("arena");
 const arenaStyle = window.getComputedStyle(arena);
 const time = document.getElementById("time");
 const score = document.getElementById("score");
-console.log(arenaStyle.width);
+let arenaLeft = arena.offsetLeft;
+console.log(arenaLeft);
+let arenaRight = arena.offsetLeft + 495;
+console.log(arenaRight);
 let enemies = [];
 let scoreCount = 30;
 score.innerHTML = "Score: " + scoreCount;
 let wdthSwitch = true;
 
-let num = 250;
+let num = arenaLeft + 30;
 let topper = 250;
 let switchUp;
 let increasing;
@@ -44,7 +47,7 @@ function createEnemy(){
 }
 
 function genNmeLeft(){
-  return Math.floor(Math.random() * 200) + 10;
+  return Math.round(Math.random() * (arenaRight-arenaLeft) + arenaLeft);
 }
 
 
@@ -65,12 +68,12 @@ function moveEnemy(shapes){
 }
 
 function moveObjX(){
-  if (num >= 545){
+  if (num >= arenaRight){
     decreasePoints();
     left = true;
     right = false;
   }
-  if (num <= 10){
+  if (num <= arenaLeft){
     decreasePoints();
     left = false;
     right = true;
