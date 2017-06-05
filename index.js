@@ -4,9 +4,8 @@ const arenaStyle = window.getComputedStyle(arena);
 const time = document.getElementById("time");
 const score = document.getElementById("score");
 let arenaLeft = arena.offsetLeft;
-console.log(arenaLeft);
+let arenaHeight = arena.offsetHeight;
 let arenaRight = arena.offsetLeft + 495;
-console.log(arenaRight);
 let enemies = [];
 let scoreCount = 30;
 score.innerHTML = "Score: " + scoreCount;
@@ -203,15 +202,16 @@ let sshape = createEnemy();
   }
 
   function clash(shapes){
-    let rightSide = num - 5;
-    let leftSide = num + 45;
+    let leftSide = num;
+    let rightSide = num + 50;
     for (var i = 0; i < shapes.length; i++){
     let shape = shapes[i];
     let shapeTopper = parseInt(shape.attributes.top.nodeValue);
     let insideLeftNum = parseInt(shape.attributes.leftnum.nodeValue);
-    if ((shapeTopper >= (topper - 30) && (shapeTopper <= (topper + 10)) ) && (insideLeftNum >= rightSide && insideLeftNum <= leftSide)){
+    insideLeftNum+=15;
+    if ((shapeTopper >= (topper - 30) && (shapeTopper <= (topper + 10)) ) && (insideLeftNum <= rightSide && insideLeftNum >= leftSide)){
       hideEnemy(shape);
-    }else if (shapeTopper >= 320) {
+    }else if (shapeTopper >= arenaHeight) {
       hideEnemy(shape);
     }
     }
