@@ -26,6 +26,19 @@ body {
   border: 1px solid red;
 }
 
+.main-h1:before {
+  content: ' ';
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  z-index: 1;
+  background-image: url('./images/donny.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 50px;
+  opacity: 0.2;
+}
+
 .left-container {
   float: left;
   height: 200px;
@@ -36,13 +49,21 @@ body {
   text-align: center;
 }
 
-.right-container {
-  position: relative;
-  overflow: hidden;
+.left-container:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  z-index: 1;
+  background-image: url('./images/thedude2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.6;
 }
 
 .right-container p {
-  z-index: 2;
+    z-index: 2;
     position: relative;
     color: #fff;
 }
@@ -54,10 +75,10 @@ body {
   height: 200px;
   width: 200px;
   z-index: 1;
-  background-image: url('./images/thedude2.jpg');
+  background-image: url('./images/walter.jpeg');
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .right-container {
