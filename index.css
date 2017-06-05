@@ -51,6 +51,7 @@ body {
   background-position: center;
   background-size: 40px 40px;
   position: absolute;
+  border: 1px inset #fff;
 }
 
 .nme-gone {

@@ -78,7 +78,7 @@ function moveObjX(){
     right = true;
   }
 
-  if (topper >= 300){
+  if (topper >= arenaHeight-45){
     decreasePoints();
     up = true;
     down = false;
