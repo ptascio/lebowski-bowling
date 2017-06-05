@@ -23,19 +23,20 @@ body {
   text-align: center;
   display: block;
   margin: 0 auto;
-  border: 1px solid red;
 }
 
 .main-h1:before {
+  border-radius: 50%;
   content: ' ';
   position: absolute;
-  height: 200px;
+  height: 250px;
   width: 200px;
   z-index: 1;
   background-image: url('./images/donny.jpeg');
   background-position: center;
   background-repeat: no-repeat;
   margin-left: 50px;
+  margin-top: 70px;
   opacity: 0.2;
 }
 
@@ -43,32 +44,34 @@ body {
   float: left;
   height: 200px;
   width: 200px;
-  border: 1px solid orange;
   color: #fff;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
 }
 
 .left-container:before {
+  border-radius: 50%;
   content: ' ';
   display: block;
   position: absolute;
   height: 200px;
   width: 200px;
   z-index: 1;
-  background-image: url('./images/thedude2.jpg');
+  background-image: url('./images/thedude.jpeg');
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
-.right-container p {
+.right-container p,
+.left-container p {
     z-index: 2;
     position: relative;
     color: #fff;
 }
 
 .right-container:before {
+  border-radius: 50%;
   content: ' ';
   display: block;
   position: absolute;
@@ -78,14 +81,13 @@ body {
   background-image: url('./images/walter.jpeg');
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .right-container {
   float: right;
   height: 200px;
   width: 200px;
-  border: 1px solid orange;
   color: #fff;
   font-family: 'Press Start 2P', cursive;
   position: relative;
@@ -104,12 +106,12 @@ body {
   background: url('./images/starterball.jpeg');
   background-position: center;
   background-size: 55px 55px;
+  z-index: 2;
 }
 
 .arena-dim {
   width: 745px;
   height: 540px;
-  border: 1px solid red;
   display: block;
   margin: 0 auto;
   background: url('./images/stars1.jpg');
@@ -142,6 +144,7 @@ body {
   background-size: 40px 40px;
   position: absolute;
   border: 1px dotted #cdd0d7;
+  z-index: 2;
 }
 
 .nme-gone {

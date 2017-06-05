@@ -180,9 +180,9 @@ function toggleGo(){
 //create a new enemy
 //append to DOM
 //start it moving
-// window.setInterval(() => {
-//   createEnemy();
-// }, 2000);
+window.setInterval(() => {
+  createEnemy();
+}, 2000);
 
 function moveEm(nmes){
   for(var i = 0; i < nmes.length; i++){
