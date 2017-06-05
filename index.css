@@ -1,3 +1,8 @@
+body {
+  background: url('./images/stars3.jpeg');
+}
+
+
 .ball-shape {
   width: 50px;
   height: 50px;
@@ -5,20 +10,27 @@
   /*left: 150px;*/
   position: absolute;
   top: 20px;
-  border: 1px solid #000;
   background: url('./images/starterball.jpeg');
   background-position: center;
-  background-size: 48px 48px;
+  background-size: 55px 55px;
 }
 
 .arena-dim {
-  width: 545px;
-  height: 340px;
+  width: 745px;
+  height: 540px;
   border: 1px solid #000;
   display: block;
   margin: 0 auto;
-  background: red;
+  background: url('./images/stars1.jpg');
+}
 
+.wrapper {
+  width: 1000px;
+  height: 680px;
+  display: relative;
+  margin: 0 auto;
+  background: url('./images/stars3.jpeg');
+  background-size: 400px 240px;
 }
 
 .arena-center {
@@ -34,7 +46,7 @@
   height: 42px;
   width: 42px;
   border-radius: 70%;
-  background: url('./images/goodpin.jpeg');
+  background: url('./images/goodpin2.jpeg');
   background-position: center;
   background-size: 40px 40px;
   position: absolute;
