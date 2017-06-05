@@ -2,17 +2,75 @@ body {
   background: url('./images/stars3.jpeg');
 }
 
-h1 {
+.main-h1 {
   font-family: 'Bungee Outline', cursive;
   color: rgba(255, 0, 0, 0.6);
+  font-size: 2em;
+  margin-bottom: -15px;
+}
+
+.roll-dude {
+  color: #fff;
+  font-family: 'Monoton', cursive;
+  font-size: 16px;
+  letter-spacing: 7px;
+
 }
 
 .nav-bar {
-  height: 50px;
-  width: 300px;
+  /*height: 100px;*/
+  width: 400px;
+  text-align: center;
   display: block;
   margin: 0 auto;
+  border: 1px solid red;
 }
+
+.left-container {
+  float: left;
+  height: 200px;
+  width: 200px;
+  border: 1px solid orange;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+}
+
+.right-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.right-container p {
+  z-index: 2;
+    position: relative;
+    color: #fff;
+}
+
+.right-container:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  z-index: 1;
+  background-image: url('./images/thedude2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+}
+
+.right-container {
+  float: right;
+  height: 200px;
+  width: 200px;
+  border: 1px solid orange;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  position: relative;
+}
+
+
 
 
 .ball-shape {
@@ -30,7 +88,7 @@ h1 {
 .arena-dim {
   width: 745px;
   height: 540px;
-  border: 1px solid #000;
+  border: 1px solid red;
   display: block;
   margin: 0 auto;
   background: url('./images/stars1.jpg');
@@ -62,7 +120,7 @@ h1 {
   background-position: center;
   background-size: 40px 40px;
   position: absolute;
-  border: 1px inset #fff;
+  border: 1px dotted #cdd0d7;
 }
 
 .nme-gone {

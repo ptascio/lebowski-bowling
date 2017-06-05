@@ -77,7 +77,7 @@ function moveObjX(){
     right = true;
   }
 
-  if (topper >= arenaHeight){
+  if (topper >= arenaHeight + 50){
     decreasePoints();
     up = true;
     down = false;
@@ -180,9 +180,9 @@ function toggleGo(){
 //create a new enemy
 //append to DOM
 //start it moving
-window.setInterval(() => {
-  createEnemy();
-}, 2000);
+// window.setInterval(() => {
+//   createEnemy();
+// }, 2000);
 
 function moveEm(nmes){
   for(var i = 0; i < nmes.length; i++){
@@ -210,7 +210,7 @@ let sshape = createEnemy();
     insideLeftNum+=15;
     if ((shapeTopper >= (topper - 30) && (shapeTopper <= (topper + 10)) ) && (insideLeftNum <= rightSide && insideLeftNum >= leftSide)){
       hideEnemy(shape);
-    }else if (shapeTopper >= arenaHeight) {
+    }else if (shapeTopper >= arenaHeight + 50) {
       hideEnemy(shape);
     }
     }
