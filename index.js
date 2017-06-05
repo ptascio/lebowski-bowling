@@ -5,12 +5,11 @@ const time = document.getElementById("time");
 const score = document.getElementById("score");
 let arenaLeft = arena.offsetLeft;
 let arenaHeight = arena.offsetHeight;
-let arenaRight = arena.offsetLeft + 495;
+let arenaRight = arena.offsetLeft + 700;
 let enemies = [];
 let scoreCount = 30;
 score.innerHTML = "Score: " + scoreCount;
 let wdthSwitch = true;
-
 let num = arenaLeft + 30;
 let topper = 250;
 let switchUp;
@@ -32,7 +31,7 @@ let nmeBottom = 0;
 let nmeRight = 10;
 let nmeLeft;
 function createEnemy(){
-  nmeTopper = -50;
+  nmeTopper = ((arenaHeight + 55) - arenaHeight);
 
   let nme = document.createElement("div");
   nmeLeft = genNmeLeft();
@@ -78,12 +77,12 @@ function moveObjX(){
     right = true;
   }
 
-  if (topper >= arenaHeight-45){
+  if (topper >= arenaHeight){
     decreasePoints();
     up = true;
     down = false;
   }
-  if (topper <= 10){
+  if (topper <= ((arenaHeight + 100) - arenaHeight)){
     decreasePoints();
     down = true;
     up = false;

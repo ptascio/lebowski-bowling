@@ -2,6 +2,18 @@ body {
   background: url('./images/stars3.jpeg');
 }
 
+h1 {
+  font-family: 'Bungee Outline', cursive;
+  color: rgba(255, 0, 0, 0.6);
+}
+
+.nav-bar {
+  height: 50px;
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
 
 .ball-shape {
   width: 50px;
@@ -22,7 +34,6 @@ body {
   display: block;
   margin: 0 auto;
   background: url('./images/stars1.jpg');
-  border: 1px solid red;
 }
 
 .wrapper {
