@@ -32,7 +32,6 @@ let nmeRight = 10;
 let nmeLeft;
 function createEnemy(){
   nmeTopper = ((arenaHeight + 55) - arenaHeight);
-
   let nme = document.createElement("div");
   nmeLeft = genNmeLeft();
   nme.style.top = nmeTopper + "px";
@@ -47,6 +46,32 @@ function createEnemy(){
 function genNmeLeft(){
   return Math.round(Math.random() * (arenaRight-arenaLeft) + arenaLeft);
 }
+
+function genNMEHeight(){
+  let arenaTop = arenaHeight - 20;
+  return Math.round(Math.random() * (arenaHeight-arenaTop) + arenaTop);
+}
+
+function createRealEnemy(){
+  let realNME = document.createElement("div");
+  let realNMEHeight = genNMEHeight();
+  realNME.style.top = realNMEHeight;
+  let leftStyle = genNmeLeft();
+  realNME.style.left = leftStyle;
+  realNME.setAttribute("class", "nme-shape");
+  realNME.setAttribute("left", leftStyle);
+  arena.appendChild(realNME);
+}
+let thisone = createRealEnemy();
+function moveRealNME(dood){
+  let thisLeft = parseInt(dood.attributes.left.nodeValue);
+  if (moveNmeDown){
+    thisLeft+=1;
+  }
+  dood.style.left = thisLeft + "px";
+}
+
+moveRealNME(thisone);
 
 
 
@@ -180,9 +205,11 @@ function toggleGo(){
 //create a new enemy
 //append to DOM
 //start it moving
-window.setInterval(() => {
-  createEnemy();
-}, 2000);
+// window.setInterval(() => {
+//   createEnemy();
+// }, 2000);
+
+
 
 function moveEm(nmes){
   for(var i = 0; i < nmes.length; i++){
@@ -195,7 +222,7 @@ let requestId;
 let sshape = createEnemy();
  function mainLoop(){
    moveEnemy(enemies);
-  clash(enemies);
+   clash(enemies);
    moveObjX();
    requestId = window.requestAnimationFrame(mainLoop);
   }
