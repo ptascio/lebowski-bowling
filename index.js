@@ -260,11 +260,22 @@ let requestId;
   function lateralClash(enemy){
       let leftSide = ballLeft;
       let rightSide = ballLeft + 50;
-      let bottom = ballTop + 50;
+      let ballBottom = ballTop + 50;
       let enemyTop = parseInt(enemy.attributes.top.nodeValue);
-      let enemyBottom = enemyTop + 30;
+      let enemyBottom = enemyTop + 40;
       let enemyLeft = parseInt(enemy.attributes.left.nodeValue);
-      let enemyRight = enemyLeft + 30;
+      let enemyRight = enemyLeft + 40;
+      if ((ballTop === enemyBottom) && (ballLeft <= enemyLeft)){
+        console.log('bottom left clash');
+      }else if ((ballTop === enemyBottom) && (rightSide >= enemyRight)){
+        console.log('bottom right clash');
+      }else if((ballBottom === enemyTop) && (rightSide >= enemyLeft)){
+        console.log('top left clash');
+      }else if((ballBottom === enemyTop) && (leftSide >= enemyRight)){
+        console.log('top right clash');
+      }else if(((leftSide - enemyRight) <= 7) && ((ballTop - enemyTop) <= 5)){
+        console.log('coming from the right');
+      }
   }
   // function lateralClash(enemies){
   //   let leftSide = ballLeft;
