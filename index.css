@@ -150,3 +150,13 @@ body {
 .nme-gone {
   background: #fff;
 }
+
+.starry {
+  height: 42px;
+  width: 42px;
+  border-radius: 70%;
+  background: url('./images/stars2.jpeg');
+  background-position: left;
+  background-size: 40px 40px;
+  position: absolute;
+}

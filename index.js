@@ -21,10 +21,6 @@ let down;
 let go = true;
 let crrntNme;
 
-
-
-
-
 let moveNmeDown = true;
 let nmeTopper;
 let nmeBottom = 0;
@@ -48,34 +44,32 @@ function genNmeLeft(){
 }
 
 function genNMEHeight(){
-  let arenaTop = arenaHeight - 20;
+  let arenaTop = arenaHeight - 500;
+  console.log(Math.round(Math.random() * (arenaHeight-arenaTop) + arenaTop));
   return Math.round(Math.random() * (arenaHeight-arenaTop) + arenaTop);
 }
 
 function createRealEnemy(){
   let realNME = document.createElement("div");
   let realNMEHeight = genNMEHeight();
-  realNME.style.top = realNMEHeight;
-  let leftStyle = genNmeLeft();
+  realNME.style.top = realNMEHeight + "px";
+  let leftStyle = arenaLeft;
   realNME.style.left = leftStyle;
-  realNME.setAttribute("class", "nme-shape");
+  realNME.setAttribute("class", "starry");
   realNME.setAttribute("left", leftStyle);
   arena.appendChild(realNME);
+  return realNME;
 }
-let thisone = createRealEnemy();
-function moveRealNME(dood){
-  let thisLeft = parseInt(dood.attributes.left.nodeValue);
+
+function moveRealNME(enemy){
+  let thisLeft = parseInt(enemy.attributes.left.nodeValue);
   if (moveNmeDown){
     thisLeft+=1;
   }
-  dood.style.left = thisLeft + "px";
+  enemy.setAttribute("left", thisLeft);
+  enemy.style.left = thisLeft + "px";
 }
-
-moveRealNME(thisone);
-
-
-
-
+let thisone = createRealEnemy();
 
 function moveEnemy(shapes){
   for (var i = 0; i < shapes.length; i++){
@@ -219,8 +213,9 @@ function moveEm(nmes){
 }
 
 let requestId;
-let sshape = createEnemy();
+// let sshape = createEnemy();
  function mainLoop(){
+   moveRealNME(thisone);
    moveEnemy(enemies);
    clash(enemies);
    moveObjX();
