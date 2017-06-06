@@ -276,9 +276,11 @@ let requestId;
       //}
       if (((ballTop - enemyBottom) <= 0) && ((enemyRight - leftSide) <= 50) && (enemyRight >= leftSide) && (ballTop>=enemyTop)){
         console.log('bottom');
+      }else if(((enemyTop - ballBottom) <= 0) && ((enemyRight - leftSide) <= 50) && (enemyRight >= leftSide) && (enemyTop>=ballBottom)){
+        console.log('from the top');
       }else if(((leftSide - enemyRight) <= 5) && ((enemyTop - ballBottom) <= 5) && ((ballTop - enemyBottom)<=5) && (enemyLeft < leftSide)){
         console.log('coming from the right');
-      }else if(((enemyLeft - rightSide) <= 3) && ((ballTop - enemyTop) <= 5) && (enemyRight > rightSide)){
+      }else if(((enemyLeft - rightSide) <= 5) && ((enemyTop - ballBottom) <= 5) && ((ballTop - enemyBottom)<=5) && (enemyRight > rightSide)){
         console.log('coming from the left');
       }
   }
