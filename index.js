@@ -69,6 +69,14 @@ function moveRealNME(enemy){
   enemy.setAttribute("left", thisLeft);
   enemy.style.left = thisLeft + "px";
 }
+
+function lateralClash(object){
+  let insideLeftNum = parseInt(object.attributes.left.nodeValue);
+  if (insideLeftNum >= arenaRight){
+    hideEnemy(object);
+  }
+}
+
 let thisone = createRealEnemy();
 
 function moveEnemy(shapes){
@@ -216,6 +224,7 @@ let requestId;
 // let sshape = createEnemy();
  function mainLoop(){
    moveRealNME(thisone);
+   lateralClash(thisone);
    moveEnemy(enemies);
    clash(enemies);
    moveObjX();
