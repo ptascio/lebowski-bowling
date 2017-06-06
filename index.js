@@ -265,16 +265,21 @@ let requestId;
       let enemyBottom = enemyTop + 40;
       let enemyLeft = parseInt(enemy.attributes.left.nodeValue);
       let enemyRight = enemyLeft + 40;
-      if ((ballTop === enemyBottom) && (ballLeft <= enemyLeft)){
-        console.log('bottom left clash');
-      }else if ((ballTop === enemyBottom) && (rightSide >= enemyRight)){
-        console.log('bottom right clash');
-      }else if((ballBottom === enemyTop) && (rightSide >= enemyLeft)){
-        console.log('top left clash');
-      }else if((ballBottom === enemyTop) && (leftSide >= enemyRight)){
-        console.log('top right clash');
-      }else if(((leftSide - enemyRight) <= 7) && ((ballTop - enemyTop) <= 5)){
+      // if ((ballTop === enemyBottom) && (ballLeft <= enemyLeft)){
+      //   console.log('bottom left clash');
+      // }else if ((ballTop === enemyBottom) && (leftSide >= enemyRight)){
+      //   console.log('bottom right clash');
+      // }else if((ballBottom === enemyTop) && (rightSide >= enemyLeft)){
+      //   console.log('top left clash');
+      // }else if((ballBottom === enemyTop) && (leftSide >= enemyRight)){
+      //   console.log('top right clash');
+      //}
+      if (((ballTop - enemyBottom) <= 0) && ((enemyRight - leftSide) <= 50) && (enemyRight >= leftSide) && (ballTop>=enemyTop)){
+        console.log('bottom');
+      }else if(((leftSide - enemyRight) <= 5) && ((enemyTop - ballBottom) <= 5) && ((ballTop - enemyBottom)<=5) && (enemyLeft < leftSide)){
         console.log('coming from the right');
+      }else if(((enemyLeft - rightSide) <= 3) && ((ballTop - enemyTop) <= 5) && (enemyRight > rightSide)){
+        console.log('coming from the left');
       }
   }
   // function lateralClash(enemies){
