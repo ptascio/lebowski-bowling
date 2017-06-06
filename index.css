@@ -135,7 +135,7 @@ body {
   position: relative;
 }
 
-.nme-shape {
+.pin-shape {
   height: 42px;
   width: 42px;
   border-radius: 70%;
@@ -147,7 +147,7 @@ body {
   z-index: 2;
 }
 
-.nme-gone {
+.pin-gone {
   background: #fff;
 }
 

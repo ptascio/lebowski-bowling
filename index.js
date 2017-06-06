@@ -3,15 +3,17 @@ const arena = document.getElementById("arena");
 const arenaStyle = window.getComputedStyle(arena);
 const time = document.getElementById("time");
 const score = document.getElementById("score");
+let createPinInterval = 5000;
+let createBonusInterval = Math.floor(Math.random() * (10000 - 3000) + 3000);
 let arenaLeft = arena.offsetLeft;
 let arenaHeight = arena.offsetHeight;
 let arenaRight = arena.offsetLeft + 700;
-let enemies = [];
+let allPins = [];
 let scoreCount = 30;
 score.innerHTML = "Score: " + scoreCount;
 let wdthSwitch = true;
-let num = ((arenaLeft + arenaRight)/2);
-let topper = arenaHeight+50;
+let ballLeft = ((arenaLeft + arenaRight)/2);
+let ballTop = arenaHeight+50;
 let switchUp;
 let increasing;
 let left;
@@ -22,21 +24,21 @@ let go = true;
 let crrntNme;
 
 let moveNmeDown = true;
-let nmeTopper;
-let nmeBottom = 0;
-let nmeRight = 10;
-let nmeLeft;
-function createEnemy(){
-  nmeTopper = ((arenaHeight + 55) - arenaHeight);
-  let nme = document.createElement("div");
-  nmeLeft = genNmeLeft();
-  nme.style.top = nmeTopper + "px";
-  nme.setAttribute("class", "nme-shape");
-  nme.setAttribute("leftnum", nmeLeft);
-  nme.setAttribute("top", nmeTopper);
-  nme.style.left = nmeLeft + "px";
-  enemies.push(nme);
-  arena.appendChild(nme);
+let pinTopper;
+let pinBottom = 0;
+let pinRight = 10;
+let pinLeft;
+function createPin(){
+  pinTopper = ((arenaHeight + 55) - arenaHeight);
+  let pin = document.createElement("div");
+  pinLeft = genNmeLeft();
+  pin.style.top = pinTopper + "px";
+  pin.setAttribute("class", "pin-shape");
+  pin.setAttribute("leftnum", pinLeft);
+  pin.setAttribute("top", pinTopper);
+  pin.style.left = pinLeft + "px";
+  allPins.push(pin);
+  arena.appendChild(pin);
 }
 
 function genNmeLeft(){
@@ -93,44 +95,44 @@ function moveEnemy(shapes){
 }
 
 function moveObjX(){
-  if (num >= arenaRight){
+  if (ballLeft >= arenaRight){
     decreasePoints();
     left = true;
     right = false;
   }
-  if (num <= arenaLeft){
+  if (ballLeft <= arenaLeft){
     decreasePoints();
     left = false;
     right = true;
   }
 
-  if (topper >= arenaHeight + 50){
+  if (ballTop >= arenaHeight + 50){
     decreasePoints();
     up = true;
     down = false;
   }
-  if (topper <= ((arenaHeight + 100) - arenaHeight)){
+  if (ballTop <= ((arenaHeight + 100) - arenaHeight)){
     decreasePoints();
     down = true;
     up = false;
-  }else if (topper < 5){
+  }else if (ballTop < 5){
     decreasePoints();
-    topper += 100;
+    ballTop += 100;
   }
   if (right){
-    num+=2;
+    ballLeft+=2;
   }
   if (left){
-    num-=2;
+    ballLeft-=2;
   }
   if(up){
-    topper-=2;
+    ballTop-=2;
   }
   if(down){
-    topper+=2;
+    ballTop+=2;
   }
-  ball.style.left = num + "px";
-  ball.style.top = topper + "px";
+  ball.style.left = ballLeft + "px";
+  ball.style.top = ballTop + "px";
 }
 
 function decreasePoints(){
@@ -188,8 +190,8 @@ function directionReset(type){
 }
 
 function boostDirection(){
-  num+=15;
-  ball.style.left = num + "px";
+  ballLeft+=15;
+  ball.style.left = ballLeft + "px";
 }
 
 window.addEventListener("keydown", spacey, false);
@@ -207,16 +209,16 @@ function toggleGo(){
 //create a new enemy
 //append to DOM
 //start it moving
-// window.setInterval(() => {
-//   createEnemy();
-// }, 2000);
+window.setInterval(() => {
+  createPin();
+}, createPinInterval);
 
 
 
-function moveEm(nmes){
-  for(var i = 0; i < nmes.length; i++){
-    let thisTop = parseInt(nmes[i].attributes.top.nodeValue);
-    moveEnemy(nmes[i]);
+function moveEm(pins){
+  for(var i = 0; i < pins.length; i++){
+    let thisTop = parseInt(pins[i].attributes.top.nodeValue);
+    moveEnemy(pins[i]);
   }
 }
 
@@ -225,21 +227,21 @@ let requestId;
  function mainLoop(){
    moveRealNME(thisone);
    lateralClash(thisone);
-   moveEnemy(enemies);
-   clash(enemies);
+   moveEnemy(allPins);
+   clash(allPins);
    moveObjX();
    requestId = window.requestAnimationFrame(mainLoop);
   }
 
   function clash(shapes){
-    let leftSide = num;
-    let rightSide = num + 50;
+    let leftSide = ballLeft;
+    let rightSide = ballLeft + 50;
     for (var i = 0; i < shapes.length; i++){
     let shape = shapes[i];
     let shapeTopper = parseInt(shape.attributes.top.nodeValue);
     let insideLeftNum = parseInt(shape.attributes.leftnum.nodeValue);
     insideLeftNum+=15;
-    if ((shapeTopper >= (topper - 30) && (shapeTopper <= (topper + 10)) ) && (insideLeftNum <= rightSide && insideLeftNum >= leftSide)){
+    if ((shapeTopper >= (ballTop - 30) && (shapeTopper <= (ballTop + 10)) ) && (insideLeftNum <= rightSide && insideLeftNum >= leftSide)){
       hideEnemy(shape);
     }else if (shapeTopper >= arenaHeight + 50) {
       hideEnemy(shape);
@@ -259,7 +261,7 @@ let requestId;
   }
 
   function start(){
-
+    createPin();
     if (!requestId){
       mainLoop();
     }
