@@ -151,12 +151,13 @@ body {
   background: #fff;
 }
 
-.starry {
+.bad-pin {
   height: 42px;
   width: 42px;
   border-radius: 70%;
-  background: url('./images/stars2.jpeg');
-  background-position: left;
-  background-size: 40px 40px;
+  background: url('./images/badpin3.jpeg');
+  background-position: center;
+  border: 1px solid #ba0000;
+  background-size: 65px 50px;
   position: absolute;
 }
