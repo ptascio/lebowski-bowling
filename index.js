@@ -223,6 +223,8 @@ let requestId;
   }
 
   function increaseScore(){
+    ball.classList.add("ball-gain-1");
+    resetBallClass("ball-gain-1");
     scoreCount+=10;
     score.innerText = "Score: " + scoreCount;
   }
@@ -231,16 +233,16 @@ let requestId;
   function decreaseScore(){
     if (decrease){
       ball.classList.add("ball-lose-1");
-      resetBallClass();
+      resetBallClass("ball-lose-1");
       decrease = false;
       scoreCount-=5;
       score.innerText = "Score: " + scoreCount;
     }
   }
 
-  function resetBallClass(){
+  function resetBallClass(type){
     window.setTimeout(() => {
-      ball.classList.remove("ball-lose-1");
+      ball.classList.remove(type);
     }, 2000);
   }
 

@@ -169,6 +169,10 @@ body {
   border: 2px solid #D92121;
 }
 
+.ball-gain-1{
+  border: 2px solid green;
+}
+
 .general-shape{
   height: 50px;
   width: 50px;
