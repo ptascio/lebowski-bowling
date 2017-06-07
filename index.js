@@ -194,13 +194,13 @@ function toggleGo(){
   }
 }
 
-// window.setInterval(() => {
-//   createPin();
-// }, createPinInterval);
-//
+window.setInterval(() => {
+  createPin();
+}, createPinInterval);
+
 window.setInterval(() => {
   createRealEnemy();
-}, (2000));
+}, (createPinInterval+3000));
 
 
 
@@ -245,22 +245,33 @@ let requestId;
   }
 
   let scoredPoints = false;
-  function clash(shapes){
+  function clash(pins){
     let leftSide = ballLeft;
     let rightSide = ballLeft + 50;
-    for (var i = 0; i < shapes.length; i++){
-    let shape = shapes[i];
-    let shapeTopper = parseInt(shape.attributes.top.nodeValue);
-    let insideLeftNum = parseInt(shape.attributes.leftnum.nodeValue);
-    insideLeftNum+=15;
-    if ((shapeTopper >= (ballTop - 30) && (shapeTopper <= (ballTop + 10)) ) && (insideLeftNum <= rightSide && insideLeftNum >= leftSide)){
-      allPins.splice(i, 1);
-      scoredPoints = true;
-      hideShape(shape);
-    }else if (shapeTopper >= arenaHeight + 50) {
-      allPins.splice(i, 1);
-      hideShape(shape);
+    for (var i = 0; i < pins.length; i++){
+    let pin = pins[i];
+    let topOfPin = parseInt(pin.attributes.top.nodeValue);
+    let leftOfPin = parseInt(pin.attributes.leftnum.nodeValue);
+    let bottomOfPin = topOfPin + 40;
+    let rightOfPin = leftOfPin + 40;
+    if (bottomOfPin >= arenaHeight){
+        allPins.splice(i, 1);
+        hideShape(pin);
     }
+    if (checkClash(leftOfPin, rightOfPin, topOfPin, bottomOfPin)) {
+      clashHappened(i, pin, allPins);
+      scoredPoints = true;
+      increaseScore();
+    }
+
+    // if ((shapeTopper >= (ballTop - 30) && (shapeTopper <= (ballTop + 10)) ) && (insideLeftNum <= rightSide && insideLeftNum >= leftSide)){
+    //   allPins.splice(i, 1);
+    //   scoredPoints = true;
+    //   hideShape(shape);
+    // }else if (shapeTopper >= arenaHeight + 50) {
+    //   allPins.splice(i, 1);
+    //   hideShape(shape);
+    // }
     }
   }
 
@@ -336,7 +347,6 @@ let requestId;
   function removeEnemy(shape){
     if (shape.parentElement) {
       if (scoredPoints){
-        increaseScore();
         scoredPoints = false;
       }
       shape.parentElement.removeChild(shape);
