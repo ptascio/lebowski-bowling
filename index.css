@@ -168,3 +168,18 @@ body {
   opacity: 0.85;
   border: 2px solid #D92121;
 }
+
+.general-shape{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+
+}
+
+.white-russian{
+  background: url('./images/whiteRussian.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+}
