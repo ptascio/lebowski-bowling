@@ -133,6 +133,8 @@ body {
 
 #score {
   position: relative;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .pin-shape {

@@ -5,14 +5,13 @@ const time = document.getElementById("time");
 const score = document.getElementById("score");
 let createPinInterval = 8000;
 let createEnemyInterval = (Math.floor(Math.random() * (10 - 3) + 3)) * 1000;
-console.log(createEnemyInterval);
 let arenaLeft = arena.offsetLeft;
 let arenaHeight = arena.offsetHeight;
 let arenaRight = arena.offsetLeft + 700;
 let allPins = [];
 let allEnemies = [];
 let scoreCount = 30;
-score.innerHTML = "Score: " + scoreCount;
+score.innerText = "Score: " + scoreCount;
 let wdthSwitch = true;
 let ballLeft = ((arenaLeft + arenaRight)/2);
 let ballTop = arenaHeight+50;
@@ -98,27 +97,27 @@ function movePins(shapes){
 
 function moveObjX(){
   if (ballLeft >= arenaRight){
-    decreasePoints();
+    // decreasePoints();
     left = true;
     right = false;
   }
   if (ballLeft <= arenaLeft){
-    decreasePoints();
+    // decreasePoints();
     left = false;
     right = true;
   }
 
   if (ballTop >= arenaHeight + 50){
-    decreasePoints();
+    // decreasePoints();
     up = true;
     down = false;
   }
   if (ballTop <= ((arenaHeight + 100) - arenaHeight)){
-    decreasePoints();
+    // decreasePoints();
     down = true;
     up = false;
   }else if (ballTop < 5){
-    decreasePoints();
+    // decreasePoints();
     ballTop += 100;
   }
   if (right){
@@ -137,10 +136,10 @@ function moveObjX(){
   ball.style.top = ballTop + "px";
 }
 
-function decreasePoints(){
-  scoreCount -= 1;
-  score.innerHTML = "Score: " + scoreCount;
-}
+// function decreasePoints(){
+//   scoreCount -= 1;
+//   score.innerHTML = "Score: " + scoreCount;
+// }
 
 let direction = {};
 function spacey(e){
@@ -186,7 +185,7 @@ function spacey(e){
 let directionTypes = [up, down, right, left];
 
 function directionReset(type){
-  closeTimer();
+  // closeTimer();
   direction = {};
   direction[type] = true;
 }
@@ -201,12 +200,13 @@ window.addEventListener("keydown", spacey, false);
 function toggleGo(){
   go = !go;
   if (go) {
-    closeTimer();
+    // closeTimer();
     resume();
-  }else {
-    timer();
-    pause();
   }
+  // }else {
+  //   timer();
+  //   pause();
+  // }
 }
 //create a new enemy
 //append to DOM
@@ -232,12 +232,28 @@ let requestId;
 // let sshape = createEnemy();
  function mainLoop(){
   //  moveRealNME(allEnemies);
-  //  lateralClash(allEnemies);
-  lateralClash(thisone);
+   lateralClash(allEnemies);
+  // lateralClash(thisone);
    movePins(allPins);
    clash(allPins);
    moveObjX();
    requestId = window.requestAnimationFrame(mainLoop);
+  }
+
+  function increaseScore(){
+    scoreCount+=10;
+    score.innerText = "Score: " + scoreCount;
+  }
+
+  let decrease = false;
+  function decreaseScore(){
+
+    if (decrease){
+      decrease = false;
+      scoreCount-=5;
+      score.innerText = "Score: " + scoreCount;
+    }
+
   }
 
   function clash(shapes){
@@ -257,51 +273,32 @@ let requestId;
   }
 
 
-  function lateralClash(enemy){
+  function lateralClash(enemies){
       let leftSide = ballLeft;
       let rightSide = ballLeft + 50;
       let ballBottom = ballTop + 50;
+      for (var i = 0; i < enemies.length; i++){
+      let enemy = enemies[i];
       let enemyTop = parseInt(enemy.attributes.top.nodeValue);
       let enemyBottom = enemyTop + 40;
       let enemyLeft = parseInt(enemy.attributes.left.nodeValue);
       let enemyRight = enemyLeft + 40;
-      // if ((ballTop === enemyBottom) && (ballLeft <= enemyLeft)){
-      //   console.log('bottom left clash');
-      // }else if ((ballTop === enemyBottom) && (leftSide >= enemyRight)){
-      //   console.log('bottom right clash');
-      // }else if((ballBottom === enemyTop) && (rightSide >= enemyLeft)){
-      //   console.log('top left clash');
-      // }else if((ballBottom === enemyTop) && (leftSide >= enemyRight)){
-      //   console.log('top right clash');
-      //}
       if (((ballTop - enemyBottom) <= 0) && ((enemyRight - leftSide) <= 50) && (enemyRight >= leftSide) && (ballTop>=enemyTop)){
         console.log('bottom');
+        decrease = true;
+        decreaseScore();
       }else if(((enemyTop - ballBottom) <= 0) && ((enemyRight - leftSide) <= 50) && (enemyRight >= leftSide) && (enemyTop>=ballBottom)){
-        console.log('from the top');
+        decrease = true;
+        decreaseScore();
       }else if(((leftSide - enemyRight) <= 5) && ((enemyTop - ballBottom) <= 5) && ((ballTop - enemyBottom)<=5) && (enemyLeft < leftSide)){
         console.log('coming from the right');
       }else if(((enemyLeft - rightSide) <= 5) && ((enemyTop - ballBottom) <= 5) && ((ballTop - enemyBottom)<=5) && (enemyRight > rightSide)){
         console.log('coming from the left');
       }
+    }
   }
-  // function lateralClash(enemies){
-  //   let leftSide = ballLeft;
-  //   let rightSide = ballLeft + 50;
-  //   let bottom = ballTop + 50;
-  //   for (var i = 0; i < enemies.length; i++){
-  //     let enemy = enemies[i];
-  //     let enemyTop = parseInt(enemy.attributes.top.nodeValue);
-  //     let enemyBottom = enemyTop + 30;
-  //     let enemyLeft = parseInt(enemy.attributes.left.nodeValue);
-  //     let enemyRight = enemyLeft + 30;
-  //     if (ballTop >= enemyBottom && ballTop <= enemyTop && ballLeft <= enemyRight){
-  //       hideEnemy(enemy);
-  //     }
-  //     if (enemyLeft >= arenaRight){
-  //       hideEnemy(enemy);
-  //     }
-  //   }
-  // }
+
+
 
 
 
@@ -312,6 +309,7 @@ let requestId;
 
   function removeEnemy(shape){
     if (shape.parentElement) {
+      increaseScore();
       shape.parentElement.removeChild(shape);
     }
   }
@@ -355,28 +353,28 @@ let requestId;
     up=false;
   }
 
-let timerId;
-function timer(){
-  let now = 1;
-  scoreCount-=1;
-  time.innerHTML = "Time: " + now;
-  score.innerHTML = "Score: " + scoreCount;
-  timerId = setInterval(function() {
-    now += 1;
-    scoreCount-=1;
-    time.innerHTML = "Time: " + now;
-    score.innerHTML = "Score: " + scoreCount;
-  }, 1000);
-}
+// let timerId;
+// function timer(){
+//   let now = 1;
+//   scoreCount-=1;
+//   time.innerHTML = "Time: " + now;
+//   score.innerHTML = "Score: " + scoreCount;
+//   timerId = setInterval(function() {
+//     now += 1;
+//     scoreCount-=1;
+//     time.innerHTML = "Time: " + now;
+//     score.innerHTML = "Score: " + scoreCount;
+//   }, 1000);
+// }
 
-function closeTimer(){
-  if (timerId){
-    setTimeout(() => {
-      window.clearInterval(timerId);
-      time.innerHTML = "";
-    }, 0);
-}
-}
+// function closeTimer(){
+//   if (timerId){
+//     setTimeout(() => {
+//       window.clearInterval(timerId);
+//       time.innerHTML = "";
+//     }, 0);
+// }
+// }
   document.addEventListener("DOMContentLoaded", () => {
       start();
   });
@@ -403,7 +401,8 @@ function closeTimer(){
 
   function stop(){
     if (requestId){
-      console.log(requestId);
+
+
       setTimeout(() => {
         window.cancelAnimationFrame(requestId);
       }, 0);
