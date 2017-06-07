@@ -163,3 +163,8 @@ body {
   background-size: 65px 50px;
   position: absolute;
 }
+
+.ball-lose-1{
+  opacity: 0.85;
+  border: 2px solid #D92121;
+}
