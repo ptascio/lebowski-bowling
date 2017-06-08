@@ -2,7 +2,7 @@ const ball = document.getElementById("ball");
 const arena = document.getElementById("arena");
 const score = document.getElementById("score");
 let createPinInterval = 8000;
-let createEnemyInterval = (Math.floor(Math.random() * (10 - 3) + 3)) * 1000;
+let createEnemyInterval = 9000;
 let arenaLeft = arena.offsetLeft;
 let arenaHeight = arena.offsetHeight;
 let arenaRight = arena.offsetLeft + 700;
@@ -62,6 +62,7 @@ function createRealEnemy(){
   realNME.setAttribute("top", realNMEHeight);
   allEnemies.push(realNME);
   arena.appendChild(realNME);
+  setTimeout(createRealEnemy, createEnemyInterval);
   return realNME;
 }
 
@@ -199,9 +200,9 @@ function toggleGo(){
  // }, createPinInterval);
 
 
-window.setInterval(() => {
-  createRealEnemy();
-}, (createPinInterval+3000));
+// window.setInterval(() => {
+//   createRealEnemy();
+// }, (createPinInterval+3000));
 
 
 
@@ -223,16 +224,22 @@ let requestId;
    requestId = window.requestAnimationFrame(mainLoop);
   }
 
-  function increaseScore(){
-    if (scoreCount % 100 === 0){
+  function increaseDifficulty(points){
+    if (points % 100 === 0){
       createPinInterval-=500;
     }
-    if (scoreCount % 200 === 0){
+    if (points % 300 === 0){
+      createEnemyInterval-=500;
       nmeSpeed+=1;
     }
+  }
+
+  function increaseScore(){
+
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
+    increaseDifficulty(scoreCount);
     score.innerText = "Score: " + scoreCount;
   }
 
@@ -364,6 +371,7 @@ let requestId;
 
   function start(){
     createPin();
+    createRealEnemy();
     if (!requestId){
       mainLoop();
     }
