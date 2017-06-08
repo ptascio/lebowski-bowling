@@ -39,6 +39,7 @@ function createPin(){
   pin.style.left = pinLeft + "px";
   allPins.push(pin);
   arena.appendChild(pin);
+  setTimeout(createPin, createPinInterval);
 }
 
 function genNmeLeft(){
@@ -70,13 +71,13 @@ function createRealEnemy(){
 //   arena.appendChild(bonus);
 // }
 // createBonus();
-
+let nmeSpeed = 1;
 function moveRealNME(enemies){
   for (var i = 0; i < enemies.length; i++){
     let enemy = enemies[i];
     let thisLeft = parseInt(enemy.attributes.left.nodeValue);
       if (moveNmeDown){
-        thisLeft+=1;
+        thisLeft+=nmeSpeed;
       }
       enemy.setAttribute("left", thisLeft);
       enemy.style.left = thisLeft + "px";
@@ -84,19 +85,16 @@ function moveRealNME(enemies){
 }
 
 
-
-// let thisone = createRealEnemy();
-
 function movePins(shapes){
   for (var i = 0; i < shapes.length; i++){
-  let shape = shapes[i];
-  let thisTop = parseInt(shape.attributes.top.nodeValue);
+    let shape = shapes[i];
+    let thisTop = parseInt(shape.attributes.top.nodeValue);
 
-  if (moveNmeDown){
-    thisTop += 1;
-  }
-  shape.setAttribute("top", thisTop);
-  shape.style.top = thisTop + "px";
+    if (moveNmeDown){
+      thisTop += 1;
+    }
+    shape.setAttribute("top", thisTop);
+    shape.style.top = thisTop + "px";
   }
 }
 
@@ -194,9 +192,12 @@ function toggleGo(){
   }
 }
 
-window.setInterval(() => {
-  createPin();
-}, createPinInterval);
+
+
+ // window.setInterval(() => {
+ //   createPin();
+ // }, createPinInterval);
+
 
 window.setInterval(() => {
   createRealEnemy();
@@ -223,6 +224,12 @@ let requestId;
   }
 
   function increaseScore(){
+    if (scoreCount % 100 === 0){
+      createPinInterval-=500;
+    }
+    if (scoreCount % 200 === 0){
+      nmeSpeed+=1;
+    }
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
@@ -243,7 +250,7 @@ let requestId;
   function resetBallClass(type){
     window.setTimeout(() => {
       ball.classList.remove(type);
-    }, 2000);
+    }, 500);
   }
 
   let scoredPoints = false;

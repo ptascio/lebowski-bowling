@@ -166,11 +166,11 @@ body {
 
 .ball-lose-1{
   opacity: 0.85;
-  border: 2px solid #D92121;
+  border: 3px solid #D92121;
 }
 
 .ball-gain-1{
-  border: 2px solid green;
+  border: 3px solid #7FFF00;
 }
 
 .general-shape{
