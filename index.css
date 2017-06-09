@@ -110,11 +110,12 @@ body {
 }
 
 .arena-dim {
-  width: 745px;
-  height: 540px;
+  width: 700px;
+  height: 500px;
   display: block;
   margin: 0 auto;
   background: url('./images/stars1.jpg');
+  border: 1px solid red;
 }
 
 .wrapper {

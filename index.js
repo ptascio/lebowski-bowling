@@ -22,19 +22,47 @@ let down;
 let go = true;
 let crrntNme;
 
+//all enemies
 let moveNmeDown = true;
-
-
 
 function genNmeLeft(){
   return Math.round(Math.random() * (arenaRight-arenaLeft) + arenaLeft);
 }
 
 function genNMEHeight(){
-  let arenaTop = arenaHeight - 500;
+  let arenaTop = arenaHeight - 450;
   return Math.round(Math.random() * (arenaHeight-arenaTop) + arenaTop);
 }
 
+function createRealEnemy(){
+  let realNME = document.createElement("div");
+  let realNMEHeight = genNMEHeight();
+  realNME.style.top = realNMEHeight + "px";
+  let leftStyle = arenaLeft;
+  realNME.style.left = leftStyle + "px";
+  realNME.setAttribute("class", "bad-pin");
+  realNME.setAttribute("left", leftStyle);
+  realNME.setAttribute("top", realNMEHeight);
+  allEnemies.push(realNME);
+  arena.appendChild(realNME);
+  setTimeout(createRealEnemy, createEnemyInterval);
+  return realNME;
+}
+
+let nmeSpeed = 1;
+function moveRealNME(enemies){
+  for (var i = 0; i < enemies.length; i++){
+    let enemy = enemies[i];
+    let thisLeft = parseInt(enemy.attributes.left.nodeValue);
+      if (moveNmeDown){
+        thisLeft+=nmeSpeed;
+      }
+      enemy.setAttribute("left", thisLeft);
+      enemy.style.left = thisLeft + "px";
+  }
+}
+
+//all pins
 let pinTopper;
 let pinBottom = 0;
 let pinRight = 10;
@@ -53,55 +81,15 @@ function createPin(){
   setTimeout(createPin, createPinInterval);
 }
 
-function createRealEnemy(){
-  let realNME = document.createElement("div");
-  let realNMEHeight = genNMEHeight();
-  realNME.style.top = realNMEHeight + "px";
-  let leftStyle = arenaLeft;
-  realNME.style.left = leftStyle + "px";
-  realNME.setAttribute("class", "bad-pin");
-  realNME.setAttribute("left", leftStyle);
-  realNME.setAttribute("top", realNMEHeight);
-  allEnemies.push(realNME);
-  arena.appendChild(realNME);
-  setTimeout(createRealEnemy, createEnemyInterval);
-  return realNME;
-}
-
-function createPiece(type, array){
-  let piece = document.createElement("div");
-}
-
-function assignBadness(badguy, array){
-
-}
-
-// function createBonus(){
-//   let bonus = document.createElement("div");
-//   bonus.classList.add('white-russian','general-shape');
-//   arena.appendChild(bonus);
-// }
-// createBonus();
-let nmeSpeed = 1;
-function moveRealNME(enemies){
-  for (var i = 0; i < enemies.length; i++){
-    let enemy = enemies[i];
-    let thisLeft = parseInt(enemy.attributes.left.nodeValue);
-      if (moveNmeDown){
-        thisLeft+=nmeSpeed;
-      }
-      enemy.setAttribute("left", thisLeft);
-      enemy.style.left = thisLeft + "px";
-  }
-}
 
 let pinSpeed = 1;
+let movePinDown = true;
 function movePins(shapes){
   for (var i = 0; i < shapes.length; i++){
     let shape = shapes[i];
     let thisTop = parseInt(shape.attributes.top.nodeValue);
 
-    if (moveNmeDown){
+    if (movePinDown){
       thisTop += pinSpeed;
     }
     shape.setAttribute("top", thisTop);
@@ -109,6 +97,7 @@ function movePins(shapes){
   }
 }
 
+//ball movement
 var ballSpeed = 2;
 function moveObjX(){
   if (ballLeft >= arenaRight){
@@ -124,7 +113,7 @@ function moveObjX(){
     up = true;
     down = false;
   }
-  if (ballTop <= ((arenaHeight + 100) - arenaHeight)){
+  if (ballTop <= ((arenaHeight + 120) - arenaHeight)){
     down = true;
     up = false;
   }else if (ballTop < 5){
@@ -146,6 +135,7 @@ function moveObjX(){
   ball.style.top = ballTop + "px";
 }
 
+//ball movement
 let direction = {};
 function spacey(e){
   e.preventDefault();
@@ -182,19 +172,16 @@ function spacey(e){
   }
 }
 
+//ball movement
 let directionTypes = [up, down, right, left];
 function directionReset(type){
   direction = {};
   direction[type] = true;
 }
 
-function boostDirection(){
-  ballLeft+=15;
-  ball.style.left = ballLeft + "px";
-}
-
+//ball movement
 window.addEventListener("keydown", spacey, false);
-
+//ball movement
 function toggleGo(){
   go = !go;
   if (go) {
@@ -204,41 +191,62 @@ function toggleGo(){
   }
 }
 
-
-function moveEm(pins){
-  for(var i = 0; i < pins.length; i++){
-    let thisTop = parseInt(pins[i].attributes.top.nodeValue);
-    movePins(pins[i]);
-  }
+//ball css
+function resetBallClass(type){
+  window.setTimeout(() => {
+    ball.classList.remove(type);
+  }, 500);
 }
 
-let requestId;
-
- function mainLoop(){
-   moveRealNME(allEnemies);
-   lateralClash(allEnemies);
-   movePins(allPins);
-   clash(allPins);
-   moveObjX();
-   requestId = window.requestAnimationFrame(mainLoop);
+//ball movement
+  function resume(){
+    if (direction.right){
+      right = true;
+      direction = {};
+    }else if (direction.left){
+      left = true;
+      direction = {};
+    }else if (direction.up){
+      up = true;
+      direction = {};
+    }else if (direction.down){
+      down = true;
+      direction = {};
+    }
+  }
+//ball movement
+  function pause(){
+    if (right){
+      direction["right"] = true;
+    }else if (left){
+      direction["left"] = true;
+    }else if (down){
+      direction["down"] = true;
+    }else if (up){
+      direction["up"] = true;
+    }
+    left=false;
+    right=false;
+    down=false;
+    up=false;
   }
 
+//game play
   function increaseDifficulty(points){
     if (points % 100 === 0){
-      createPinInterval-=500;
+      createPinInterval-=1000;
     }
     if (points % 200 === 0){
-      createEnemyInterval-=500;
+      createEnemyInterval-=1000;
       nmeSpeed+=1;
     }
-    if (points % 300 === 0){
+    if (points % 400 === 0){
       ballSpeed+=1;
       pinSpeed+=1;
     }
   }
-
+//game play
   function increaseScore(){
-
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
@@ -247,7 +255,7 @@ let requestId;
     }
     score.innerText = "Score: " + scoreCount;
   }
-
+//game play
   let decrease = false;
   function decreaseScore(){
     if (decrease){
@@ -259,12 +267,7 @@ let requestId;
     }
   }
 
-  function resetBallClass(type){
-    window.setTimeout(() => {
-      ball.classList.remove(type);
-    }, 500);
-  }
-
+//game play pins
   let scoredPoints = false;
   function clash(pins){
     let leftSide = ballLeft;
@@ -275,7 +278,7 @@ let requestId;
       let leftOfPin = parseInt(pin.attributes.leftnum.nodeValue);
       let bottomOfPin = topOfPin + 40;
       let rightOfPin = leftOfPin + 40;
-        if (bottomOfPin >= arenaHeight){
+        if (bottomOfPin >= (arenaHeight + 100)){
           allPins.splice(i, 1);
           hideShape(pin);
         }
@@ -287,7 +290,7 @@ let requestId;
     }
   }
 
-
+//game play enemies
   function lateralClash(enemies){
       let leftSide = ballLeft;
       let rightSide = ballLeft + 50;
@@ -308,7 +311,7 @@ let requestId;
           }
     }
   }
-
+//game play
   function checkClash(shapeLeft, shapeRight, shapeTop, shapeBottom){
     let leftSide = ballLeft;
     let rightSide = ballLeft + 50;
@@ -323,17 +326,17 @@ let requestId;
       return true;
     }
   }
-
+//game play
   function clashHappened(index, shape, shapesArray){
     shapesArray.splice(index, 1);
     hideShape(shape);
   }
-
+//game play
   function hideShape(shape){
     shape.style.display = "none";
     removeEnemy(shape);
   }
-
+//game play
   function removeEnemy(shape){
     if (shape.parentElement) {
       if (scoredPoints){
@@ -343,51 +346,35 @@ let requestId;
     }
   }
 
-  function start(){
-    createPin();
-    createRealEnemy();
-    if (!requestId){
-      mainLoop();
-    }
+//functions to begin and continue play
+
+document.addEventListener("DOMContentLoaded", () => {
+    start();
+});
+
+function start(){
+  createPin();
+  createRealEnemy();
+  if (!requestId){
+    mainLoop();
   }
+}
 
-  function resume(){
-    if (direction.right){
-      right = true;
-      direction = {};
-    }else if (direction.left){
-      left = true;
-      direction = {};
-    }else if (direction.up){
-      up = true;
-      direction = {};
-    }else if (direction.down){
-      down = true;
-      direction = {};
-    }
-  }
-
-  function pause(){
-    if (right){
-      direction["right"] = true;
-    }else if (left){
-      direction["left"] = true;
-    }else if (down){
-      direction["down"] = true;
-    }else if (up){
-      direction["up"] = true;
-    }
-    left=false;
-    right=false;
-    down=false;
-    up=false;
-  }
+let requestId;
+function mainLoop(){
+  moveRealNME(allEnemies);
+  lateralClash(allEnemies);
+  movePins(allPins);
+  clash(allPins);
+  moveObjX();
+  requestId = window.requestAnimationFrame(mainLoop);
+}
 
 
-  document.addEventListener("DOMContentLoaded", () => {
-      start();
-  });
 
+
+
+//ball movement not in use
   let wdth = 50;
   let hgt = 50;
   function shrinkBox(){
@@ -408,12 +395,20 @@ let requestId;
       ball.style.height = hgt + "px";
   }
 
-  function stop(){
-    if (requestId){
-      setTimeout(() => {
-        window.cancelAnimationFrame(requestId);
-      }, 0);
+//game play, not in use
+function stop(){
+  if (requestId){
+    setTimeout(() => {
+      window.cancelAnimationFrame(requestId);
+  }, 0);
 
       //requestId = undefined;
     }
   }
+  //bonus character, not in use
+  // function createBonus(){
+  //   let bonus = document.createElement("div");
+  //   bonus.classList.add('white-russian','general-shape');
+  //   arena.appendChild(bonus);
+  // }
+  // createBonus();
