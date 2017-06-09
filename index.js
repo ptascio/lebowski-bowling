@@ -95,20 +95,21 @@ function moveRealNME(enemies){
   }
 }
 
-
+let pinSpeed = 1;
 function movePins(shapes){
   for (var i = 0; i < shapes.length; i++){
     let shape = shapes[i];
     let thisTop = parseInt(shape.attributes.top.nodeValue);
 
     if (moveNmeDown){
-      thisTop += 1;
+      thisTop += pinSpeed;
     }
     shape.setAttribute("top", thisTop);
     shape.style.top = thisTop + "px";
   }
 }
 
+var ballSpeed = 2;
 function moveObjX(){
   if (ballLeft >= arenaRight){
     left = true;
@@ -130,16 +131,16 @@ function moveObjX(){
     ballTop += 100;
   }
   if (right){
-    ballLeft+=2;
+    ballLeft+=ballSpeed;
   }
   if (left){
-    ballLeft-=2;
+    ballLeft-=ballSpeed;
   }
   if(up){
-    ballTop-=2;
+    ballTop-=ballSpeed;
   }
   if(down){
-    ballTop+=2;
+    ballTop+=ballSpeed;
   }
   ball.style.left = ballLeft + "px";
   ball.style.top = ballTop + "px";
@@ -230,6 +231,10 @@ let requestId;
       createEnemyInterval-=500;
       nmeSpeed+=1;
     }
+    if (points % 300 === 0){
+      ballSpeed+=1;
+      pinSpeed+=1;
+    }
   }
 
   function increaseScore(){
@@ -237,7 +242,7 @@ let requestId;
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
-    if (scoreCount > 0){
+    if (scoreCount > 0 && createPinInterval >= 3000){
       increaseDifficulty(scoreCount);
     }
     score.innerText = "Score: " + scoreCount;
