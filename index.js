@@ -1,8 +1,8 @@
 const ball = document.getElementById("ball");
 const arena = document.getElementById("arena");
 const score = document.getElementById("score");
-let createPinInterval = 8000;
-let createEnemyInterval = 9000;
+let createPinInterval = 6000;
+let createEnemyInterval = 8000;
 let arenaLeft = arena.offsetLeft;
 let arenaHeight = arena.offsetHeight;
 let arenaRight = arena.offsetLeft + 700;
@@ -254,7 +254,7 @@ function resetBallClass(type){
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
-    if (scoreCount > 0 && createPinInterval >= 3000){
+    if (scoreCount > 0 && createPinInterval >= 2000){
       increaseDifficulty(scoreCount);
     }
     score.innerText = "Score: " + scoreCount;
