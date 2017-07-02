@@ -237,19 +237,18 @@ function resetBallClass(type){
 
 //game play
   function increaseDifficulty(points){
-    if (points === 10){
-      addNrg = true;
+    if (points % 100 === 0){
       createPinInterval-=1000;
     }
-    if (points === 20){
+    if (points % 200 === 0){
       createEnemyInterval-=1000;
       nmeSpeed+=1;
       pinSpeed+=1;
     }
-    if (points === 30){
+    if (points % 300 === 0){
       transformBall();
     }
-    if (points === 40){
+    if (points % 400 === 0){
       resetDifficulty();
     }
   }
@@ -278,6 +277,7 @@ function resetBallClass(type){
     createEnemyInterval = 8000;
     nmeSpeed = 1;
     pinSpeed = 1;
+    increaseEnergyBar();
     untransformBall();
   }
 //game play
@@ -285,7 +285,6 @@ function resetBallClass(type){
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
-    addEnergy();
     if (scoreCount > 0 && createPinInterval >= 2000){
       increaseDifficulty(scoreCount);
     }
@@ -309,20 +308,18 @@ function resetBallClass(type){
     energyBar.style.width = nrgwdth;
   }
 
-  let addNrg = false;
-  function addEnergy(){
-    if ((energy < 100) && (addNrg)){
-      setTimeout(function(){
-        energy += 10;
-        let nrgwdth = energy + "px";
-        ball.classList.add("ball-gain-1");
-        energyBar.style.width = nrgwdth;
-        changeNrgColor();
-      }, 10000);
+  function increaseEnergyBar(){
+    if (energy < 80){
+      energy += 20;
+    }else if ((energy >= 80) && (energy < 100)){
+      energy += 10;
     }
-    resetBallClass("ball-gain-1");
-    addNrg = false;
+    let nrgwdth = energy + "px";
+    changeNrgColor();
+    energyBar.style.width = nrgwdth;
   }
+
+
 
   function changeNrgColor(){
     if (energy === 0){
