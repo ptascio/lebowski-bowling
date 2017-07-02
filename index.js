@@ -237,9 +237,6 @@ function resetBallClass(type){
 
 //game play
   function increaseDifficulty(points){
-    if (points === 10){
-      transformBall();
-    }
     if (points % 100 === 0){
       createPinInterval-=1000;
     }
@@ -249,6 +246,7 @@ function resetBallClass(type){
       pinSpeed+=1;
     }
     if (points % 400 === 0){
+      transformBall();
       ballSpeed+=1;
     }
     if (points % 600 === 0){
@@ -257,7 +255,14 @@ function resetBallClass(type){
   }
 
   function transformBall(){
+    let prevBallSpeed = ballSpeed;
+    ballSpeed = 0;
     ball.classList.add("fast-ball");
+    setTimeout(function(){
+
+      ballSpeed = prevBallSpeed;
+    }, 400);
+
   }
 
   function resetDifficulty(){
@@ -272,6 +277,7 @@ function resetBallClass(type){
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
+    addEnergy();
     if (scoreCount > 0 && createPinInterval >= 2000){
       increaseDifficulty(scoreCount);
     }
@@ -295,10 +301,21 @@ function resetBallClass(type){
     energyBar.style.width = nrgwdth;
   }
 
+  function addEnergy(){
+    if (energy < 100){
+      energy += 10;
+      let nrgwdth = energy + "px";
+      changeNrgColor();
+      energyBar.style.width = nrgwdth;
+    }
+  }
+
   function changeNrgColor(){
     if (energy === 0){
       decrease = false;
       stop();
+    }else if (energy > 70){
+      energyBar.style.backgroundColor = "#00ff00";
     }else if ((energy >= 50) && (energy <= 70)){
       energyBar.style.backgroundColor = "#ffff00";
     }else if ((energy >= 30) && (energy <= 40)){
