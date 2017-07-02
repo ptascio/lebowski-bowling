@@ -21,6 +21,7 @@ let up;
 let down;
 let go = true;
 let crrntNme;
+let energyBar = document.getElementById("energy");
 
 //all enemies
 let moveNmeDown = true;
@@ -265,6 +266,11 @@ function resetBallClass(type){
       scoreCount-=10;
       score.innerText = "Score: " + scoreCount;
     }
+  }
+
+  function shortenEnergyBar(){
+    var nrgwdth = window.getComputedStyle(energyBar).getPropertyValue("width");
+    debugger
   }
 
 //game play pins
