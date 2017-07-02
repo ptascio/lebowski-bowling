@@ -243,11 +243,22 @@ function resetBallClass(type){
     if (points % 200 === 0){
       createEnemyInterval-=1000;
       nmeSpeed+=1;
+      pinSpeed+=1;
     }
     if (points % 400 === 0){
       ballSpeed+=1;
-      pinSpeed+=1;
     }
+    if (points % 600 === 0){
+      resetDifficulty();
+    }
+  }
+
+  function resetDifficulty(){
+    createPinInterval = 6000;
+    createEnemyInterval = 8000;
+    nmeSpeed = 1;
+    ballSpeed = 2;
+    pinSpeed = 1;
   }
 //game play
   function increaseScore(){
