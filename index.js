@@ -271,14 +271,22 @@ function resetBallClass(type){
   }
 
   function shortenEnergyBar(){
-    var nrgwdth = window.getComputedStyle(energyBar).getPropertyValue("width");
     energy -= 10;
-    nrgwdth = energy + "px";
+    let nrgwdth = energy + "px";
+    changeNrgColor();
     energyBar.style.width = nrgwdth;
   }
 
   function changeNrgColor(){
-    
+    if (energy === 0){
+      stop();
+    }else if ((energy >= 50) && (energy <= 70)){
+      energyBar.style.backgroundColor = "#ffff00";
+    }else if ((energy >= 30) && (energy <= 40)){
+      energyBar.style.backgroundColor = "#ff7f00";
+    }else if (energy < 30){
+      energyBar.style.backgroundColor = "#ff0000";
+    }
   }
 
 //game play pins
