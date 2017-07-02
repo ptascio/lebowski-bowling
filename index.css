@@ -109,6 +109,19 @@ body {
   z-index: 2;
 }
 
+.fast-ball {
+  background: url('./images/spaceball.jpeg');
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /*left: 150px;*/
+  position: absolute;
+  top: 20px;
+  background-position: center;
+  background-size: 65px 65px;
+  z-index: 2;
+}
+
 .arena-dim {
   width: 700px;
   height: 500px;

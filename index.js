@@ -237,6 +237,9 @@ function resetBallClass(type){
 
 //game play
   function increaseDifficulty(points){
+    if (points === 10){
+      transformBall();
+    }
     if (points % 100 === 0){
       createPinInterval-=1000;
     }
@@ -251,6 +254,10 @@ function resetBallClass(type){
     if (points % 600 === 0){
       resetDifficulty();
     }
+  }
+
+  function transformBall(){
+    ball.classList.add("fast-ball");
   }
 
   function resetDifficulty(){
