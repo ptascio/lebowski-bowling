@@ -2,7 +2,7 @@ const ball = document.getElementById("ball");
 const arena = document.getElementById("arena");
 const score = document.getElementById("score");
 let createPinInterval = 6000;
-let createEnemyInterval = 8000;
+let createEnemyInterval = 7000;
 let arenaLeft = arena.offsetLeft;
 let arenaHeight = arena.offsetHeight;
 let arenaRight = arena.offsetLeft + 700;
@@ -239,8 +239,10 @@ function resetBallClass(type){
   function increaseDifficulty(points){
     if (points % 100 === 0){
       createPinInterval-=1000;
+      createEnemyInterval-=1000;
     }
     if (points % 200 === 0){
+      createPinInterval-=1000;
       createEnemyInterval-=1000;
       nmeSpeed+=1;
       pinSpeed+=1;
@@ -274,7 +276,7 @@ function resetBallClass(type){
 
   function resetDifficulty(){
     createPinInterval = 6000;
-    createEnemyInterval = 8000;
+    createEnemyInterval = 7000;
     nmeSpeed = 1;
     pinSpeed = 1;
     increaseEnergyBar();
