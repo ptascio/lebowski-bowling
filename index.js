@@ -22,6 +22,7 @@ let down;
 let go = true;
 let crrntNme;
 let energyBar = document.getElementById("energy");
+let energy = 100;
 
 //all enemies
 let moveNmeDown = true;
@@ -260,6 +261,7 @@ function resetBallClass(type){
   let decrease = false;
   function decreaseScore(){
     if (decrease){
+      shortenEnergyBar();
       ball.classList.add("ball-lose-1");
       resetBallClass("ball-lose-1");
       decrease = false;
@@ -270,7 +272,13 @@ function resetBallClass(type){
 
   function shortenEnergyBar(){
     var nrgwdth = window.getComputedStyle(energyBar).getPropertyValue("width");
-    debugger
+    energy -= 10;
+    nrgwdth = energy + "px";
+    energyBar.style.width = nrgwdth;
+  }
+
+  function changeNrgColor(){
+    
   }
 
 //game play pins
