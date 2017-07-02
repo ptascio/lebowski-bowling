@@ -267,8 +267,6 @@ function resetBallClass(type){
       ball.classList.add("ball-lose-1");
       resetBallClass("ball-lose-1");
       decrease = false;
-      scoreCount-=10;
-      score.innerText = "Score: " + scoreCount;
     }
   }
 
@@ -281,6 +279,7 @@ function resetBallClass(type){
 
   function changeNrgColor(){
     if (energy === 0){
+      decrease = false;
       stop();
     }else if ((energy >= 50) && (energy <= 70)){
       energyBar.style.backgroundColor = "#ffff00";
@@ -303,6 +302,8 @@ function resetBallClass(type){
       let bottomOfPin = topOfPin + 40;
       let rightOfPin = leftOfPin + 40;
         if (bottomOfPin >= (arenaHeight + 100)){
+          decrease = true;
+          decreaseScore();
           allPins.splice(i, 1);
           hideShape(pin);
         }
@@ -422,6 +423,7 @@ function mainLoop(){
 
 //game play, not in use
 function stop(){
+  ball.classList.add("you-lose");
   clearTimeout(clearPin);
   clearTimeout(clearNme);
   if (requestId){
