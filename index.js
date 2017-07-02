@@ -36,6 +36,7 @@ function genNMEHeight(){
   return Math.round(Math.random() * (arenaHeight-arenaTop) + arenaTop);
 }
 
+let clearNme;
 function createRealEnemy(){
   let realNME = document.createElement("div");
   let realNMEHeight = genNMEHeight();
@@ -47,7 +48,7 @@ function createRealEnemy(){
   realNME.setAttribute("top", realNMEHeight);
   allEnemies.push(realNME);
   arena.appendChild(realNME);
-  setTimeout(createRealEnemy, createEnemyInterval);
+  clearNme = setTimeout(createRealEnemy, createEnemyInterval);
   return realNME;
 }
 
@@ -69,6 +70,7 @@ let pinTopper;
 let pinBottom = 0;
 let pinRight = 10;
 let pinLeft;
+let clearPin;
 function createPin(){
   pinTopper = ((arenaHeight + 55) - arenaHeight);
   let pin = document.createElement("div");
@@ -80,7 +82,7 @@ function createPin(){
   pin.style.left = pinLeft + "px";
   allPins.push(pin);
   arena.appendChild(pin);
-  setTimeout(createPin, createPinInterval);
+  clearPin = setTimeout(createPin, createPinInterval);
 }
 
 
@@ -371,12 +373,13 @@ function resetBallClass(type){
 //functions to begin and continue play
 
 document.addEventListener("DOMContentLoaded", () => {
-    start();
+    start(letsPlay);
 });
 
-function start(){
-  createPin();
-  createRealEnemy();
+let letsPlay = true;
+function start(bool){
+    createPin();
+    createRealEnemy();
   if (!requestId){
     mainLoop();
   }
@@ -419,6 +422,8 @@ function mainLoop(){
 
 //game play, not in use
 function stop(){
+  clearTimeout(clearPin);
+  clearTimeout(clearNme);
   if (requestId){
     setTimeout(() => {
       window.cancelAnimationFrame(requestId);
