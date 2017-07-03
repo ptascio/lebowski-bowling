@@ -222,7 +222,9 @@ body {
 #score {
 
   color: #fff;
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+  font-size: 18px;
 }
 
 .game-info-center {
@@ -234,4 +236,25 @@ body {
   float: left;
   padding: 10px;
   margin: 15px 0 0 95px;
+}
+
+.other-wrapper {
+  float: right;
+  display: flex;
+  padding: 0;
+  margin: -100px 95px 0 0;
+  padding: 10px;
+}
+
+.other-wrapper a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 3px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+}
+
+.other-wrapper a:hover {
+  color: #b86bff;
 }
