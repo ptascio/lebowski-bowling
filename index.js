@@ -1,8 +1,8 @@
 const ball = document.getElementById("ball");
 const arena = document.getElementById("arena");
 const score = document.getElementById("score");
-let createPinInterval = 6000;
-let createEnemyInterval = 7000;
+let createPinInterval = 5000;
+let createEnemyInterval = 6000;
 let arenaLeft = arena.offsetLeft;
 let arenaHeight = arena.offsetHeight;
 let arenaRight = arena.offsetLeft + 700;
@@ -275,8 +275,8 @@ function resetBallClass(type){
   }
 
   function resetDifficulty(){
-    createPinInterval = 6000;
-    createEnemyInterval = 7000;
+    createPinInterval = 5000;
+    createEnemyInterval = 6000;
     nmeSpeed = 1;
     pinSpeed = 1;
     increaseEnergyBar();
@@ -287,7 +287,7 @@ function resetBallClass(type){
     ball.classList.add("ball-gain-1");
     resetBallClass("ball-gain-1");
     scoreCount+=10;
-    if (scoreCount > 0 && createPinInterval >= 2000){
+    if (scoreCount > 0 && createPinInterval >= 1000){
       increaseDifficulty(scoreCount);
     }
     score.innerText = "Score: " + scoreCount;
@@ -421,9 +421,9 @@ function resetBallClass(type){
 
 //functions to begin and continue play
 
-document.addEventListener("DOMContentLoaded", () => {
-    start(letsPlay);
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//     start(letsPlay);
+// });
 
 let letsPlay = true;
 function start(bool){

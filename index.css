@@ -206,11 +206,11 @@ body {
 }
 
 .energy-wrapper {
-  position: relative;
+  position: static;
   border: 1px solid #fff;
   width: 110px;
   height: 20px;
-  margin-left: 150px;
+  /*margin-left: 150px;*/
   margin-top: 5px
 }
 
@@ -220,4 +220,10 @@ body {
   background: #00ff00;
   display: block;
   margin: 3px 0 3px 5px;
+}
+
+.info-center {
+  border: 1px solid red;
+  max-width: 400px;
+  text-align: center;
 }
