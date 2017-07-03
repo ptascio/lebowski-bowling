@@ -33,7 +33,13 @@ function genNmeLeft(){
 
 function genNMEHeight(){
   let arenaTop = arenaHeight - 450;
-  return Math.round(Math.random() * (arenaHeight-arenaTop) + arenaTop);
+  let finalHght = Math.round(Math.random() * (arenaHeight-arenaTop) + arenaTop);
+  if (finalHght < 116){
+    var diff = 116 - finalHght;
+    finalHght += diff;
+  }
+  console.log(finalHght);
+  return finalHght;
 }
 
 let clearNme;
@@ -421,9 +427,9 @@ function resetBallClass(type){
 
 //functions to begin and continue play
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     start(letsPlay);
-// });
+document.addEventListener("DOMContentLoaded", () => {
+    start(letsPlay);
+});
 
 let letsPlay = true;
 function start(bool){
