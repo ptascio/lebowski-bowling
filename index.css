@@ -103,7 +103,7 @@ body {
   border-radius: 50%;
   /*left: 150px;*/
   position: absolute;
-  top: 20px;
+  /*top: 20px;*/
   background: url('./images/starterball.jpeg');
   background-position: center;
   background-size: 55px 55px;

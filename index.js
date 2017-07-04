@@ -427,9 +427,9 @@ function resetBallClass(type){
 
 //functions to begin and continue play
 
-document.addEventListener("DOMContentLoaded", () => {
-    start(letsPlay);
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//     start(letsPlay);
+// });
 
 let letsPlay = true;
 function start(bool){
