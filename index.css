@@ -23,7 +23,7 @@ body {
   text-align: center;
   display: block;
   margin: 0 auto;
-  border: 1px solid red;
+  border: 1px solid #000;
 }
 
 .main-h1:before {
@@ -103,7 +103,7 @@ body {
   border-radius: 50%;
   /*left: 150px;*/
   position: absolute;
-  /*top: 20px;*/
+  top: 20px;
   background: url('./images/starterball.jpeg');
   background-position: center;
   background-size: 55px 55px;
@@ -129,7 +129,7 @@ body {
   display: block;
   margin: 0 auto;
   background: url('./images/stars1.jpg');
-  border: 1px solid red;
+  border: 1px solid #000;
 }
 
 .wrapper {
@@ -231,7 +231,7 @@ body {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  border: 1px solid red;
+  border: 1px solid #000;
   width: 150px;
   float: left;
   padding: 10px;
