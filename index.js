@@ -475,6 +475,16 @@ function mainLoop(){
       ball.style.height = hgt + "px";
   }
 
+var startGame = document.getElementById("startGame");
+var startbtn= document.getElementById("startBtn");
+
+window.onclick = function(event) {
+    if (event.target === startGame || event.target === startBtn) {
+        startGame.style.display = "none";
+        start();
+    }
+};
+
 //game play, not in use
 function stop(){
   ball.classList.add("you-lose");
