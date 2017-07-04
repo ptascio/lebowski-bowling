@@ -481,15 +481,20 @@ var startbtn= document.getElementById("startBtn");
 window.onclick = function(event) {
     if (event.target === startGame || event.target === startBtn) {
         startGame.style.display = "none";
-        start();
+        gameOverMan();
     }
 };
+function gameOverMan(){
+  var endGame = document.getElementById("endGame");
+  endGame.style.display = "block";
+}
 
 //game play, not in use
 function stop(){
   ball.classList.add("you-lose");
   clearTimeout(clearPin);
   clearTimeout(clearNme);
+  gameOverMan();
   if (requestId){
     setTimeout(() => {
       window.cancelAnimationFrame(requestId);
