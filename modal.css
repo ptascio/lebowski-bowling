@@ -41,9 +41,9 @@
 }
 
 .end-modal-content {
-
+  width: 40%;
   border: 1px solid #ffa500;;
-  background-color: rgba(0,0,0,0.4);*/
+  background-color: rgba(0,0,0,0.7);
 }
 
 
@@ -76,5 +76,4 @@
   width: 230px;
   height: 150px;
   border-radius: 50%;
-  opacity: 0.4;
 }

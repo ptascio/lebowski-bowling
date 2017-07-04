@@ -476,12 +476,12 @@ function mainLoop(){
   }
 
 var startGame = document.getElementById("startGame");
-var startbtn= document.getElementById("startBtn");
+var startBtn= document.getElementById("startBtn");
 
 window.onclick = function(event) {
     if (event.target === startGame || event.target === startBtn) {
         startGame.style.display = "none";
-        gameOverMan();
+        start();
     }
 };
 function gameOverMan(){
