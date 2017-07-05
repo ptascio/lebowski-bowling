@@ -523,6 +523,7 @@ function stop(){
 
   function replay(){
     resetBallClass("you-lose", 10);
+    untransformBall();
     removeAll(allPins);
     removeAll(allEnemies);
     left = false;
