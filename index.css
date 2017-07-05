@@ -246,8 +246,7 @@ body {
   letter-spacing: 4px;
 }
 
-.other-wrapper a,
-.replay {
+.other-wrapper a {
   text-decoration: none;
   color: #fff;
   cursor: pointer;
@@ -256,7 +255,6 @@ body {
   letter-spacing: 2px;
 }
 
-.other-wrapper a:hover,
-.replay:hover {
+.other-wrapper a:hover {
   color: #b86bff;
 }
