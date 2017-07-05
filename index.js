@@ -485,8 +485,6 @@ var startGame = document.getElementById("startGame");
 var startBtn= document.getElementById("startBtn");
 
 window.onclick = function(event) {
-  energy = 10;
-  changeNrgColor();
     if (event.target === startGame || event.target === startBtn) {
         startGame.style.display = "none";
         start();
@@ -541,9 +539,8 @@ function stop(){
     ballLeft = ((arenaLeft + arenaRight)/2);
     ballTop = arenaHeight+50;
     go = true;
-    energyBar = document.getElementById("energy");
     energy = 100;
-    changeNrgColor();
+    increaseEnergyBar();
     endGame.style.display = "none";
     requestId = "";
     start();
