@@ -489,7 +489,7 @@ function gameOverMan(){
   endGame.style.display = "block";
 }
 
-//game play, not in use
+//game plays
 function stop(){
   ball.classList.add("you-lose");
   clearTimeout(clearPin);
@@ -502,6 +502,25 @@ function stop(){
 
       //requestId = undefined;
     }
+  }
+
+  function replay(){
+     createPinInterval = 5000;
+     createEnemyInterval = 6000;
+     arenaLeft = arena.offsetLeft;
+     arenaHeight = arena.offsetHeight;
+     arenaRight = arena.offsetLeft + 700;
+     allPins = [];
+     allEnemies = [];
+     scoreCount = 0;
+    score.innerText = "Score: " + scoreCount;
+     wdthSwitch = true;
+     ballLeft = ((arenaLeft + arenaRight)/2);
+     ballTop = arenaHeight+50;
+     go = true;
+     energyBar = document.getElementById("energy");
+     energy = 100;
+     start();
   }
   //bonus character, not in use
   // function createBonus(){
