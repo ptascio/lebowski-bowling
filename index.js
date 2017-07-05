@@ -526,6 +526,8 @@ function stop(){
     resetBallClass("you-lose", 10);
     removeAll(allPins);
     removeAll(allEnemies);
+    left = false;
+    right = false;
     createPinInterval = 5000;
     createEnemyInterval = 6000;
     arenaLeft = arena.offsetLeft;
