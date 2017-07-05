@@ -515,15 +515,21 @@ function stop(){
     }
   }
 
-  function removeAll(){
-    
+  function removeAll(objects){
+    for(var i = 0; i < objects.length; i++){
+      var shape = objects[i];
+      if (shape.parentElement) {
+        shape.parentElement.removeChild(shape);
+      }
+    }
   }
 
   function replay(){
     resetBallClass("you-lose", 10);
+    removeAll(allPins);
+    removeAll(allEnemies);
     createPinInterval = 5000;
     createEnemyInterval = 6000;
-
     arenaLeft = arena.offsetLeft;
     arenaHeight = arena.offsetHeight;
     arenaRight = arena.offsetLeft + 700;
