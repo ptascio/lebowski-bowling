@@ -38,7 +38,6 @@ function genNMEHeight(){
     var diff = 116 - finalHght;
     finalHght += diff;
   }
-  console.log(finalHght);
   return finalHght;
 }
 
