@@ -202,10 +202,16 @@ function toggleGo(){
 }
 
 //ball css
-function resetBallClass(type){
+function resetBallClass(type, time){
+  let timeOut;
+  if (time){
+    timeOut = time;
+  }else {
+    timeOut = 500;
+  }
   window.setTimeout(() => {
     ball.classList.remove(type);
-  }, 500);
+  }, timeOut);
 }
 
 //ball movement
@@ -479,14 +485,19 @@ var startGame = document.getElementById("startGame");
 var startBtn= document.getElementById("startBtn");
 
 window.onclick = function(event) {
+  energy = 10;
+  changeNrgColor();
     if (event.target === startGame || event.target === startBtn) {
         startGame.style.display = "none";
         start();
     }
 };
+
+var playAgain = document.getElementById("play-again");
+var endGame = document.getElementById("endGame");
 function gameOverMan(){
-  var endGame = document.getElementById("endGame");
   endGame.style.display = "block";
+  playAgain.onclick = function() {replay();};
 }
 
 //game plays
@@ -504,23 +515,32 @@ function stop(){
     }
   }
 
+  function removeAll(){
+    
+  }
+
   function replay(){
-     createPinInterval = 5000;
-     createEnemyInterval = 6000;
-     arenaLeft = arena.offsetLeft;
-     arenaHeight = arena.offsetHeight;
-     arenaRight = arena.offsetLeft + 700;
-     allPins = [];
-     allEnemies = [];
-     scoreCount = 0;
+    resetBallClass("you-lose", 10);
+    createPinInterval = 5000;
+    createEnemyInterval = 6000;
+
+    arenaLeft = arena.offsetLeft;
+    arenaHeight = arena.offsetHeight;
+    arenaRight = arena.offsetLeft + 700;
+    allPins = [];
+    allEnemies = [];
+    scoreCount = 0;
     score.innerText = "Score: " + scoreCount;
-     wdthSwitch = true;
-     ballLeft = ((arenaLeft + arenaRight)/2);
-     ballTop = arenaHeight+50;
-     go = true;
-     energyBar = document.getElementById("energy");
-     energy = 100;
-     start();
+    wdthSwitch = true;
+    ballLeft = ((arenaLeft + arenaRight)/2);
+    ballTop = arenaHeight+50;
+    go = true;
+    energyBar = document.getElementById("energy");
+    energy = 100;
+    changeNrgColor();
+    endGame.style.display = "none";
+    requestId = "";
+    start();
   }
   //bonus character, not in use
   // function createBonus(){
