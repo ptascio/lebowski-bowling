@@ -220,7 +220,6 @@ body {
 }
 
 #score {
-
   color: #fff;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 2px;
@@ -242,8 +241,9 @@ body {
   float: right;
   display: flex;
   padding: 0;
-  margin: -100px 95px 0 0;
-  padding: 10px;
+  margin: -110px 95px 0 0;
+  font-size: 14px;
+  letter-spacing: 4px;
 }
 
 .other-wrapper a,
