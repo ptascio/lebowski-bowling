@@ -526,6 +526,7 @@ function stop(){
     untransformBall();
     removeAll(allPins);
     removeAll(allEnemies);
+    up = true;
     left = false;
     right = false;
     createPinInterval = 5000;
