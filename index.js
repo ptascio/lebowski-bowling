@@ -433,11 +433,11 @@ function resetBallClass(type, time){
 //functions to begin and continue play
 
 // document.addEventListener("DOMContentLoaded", () => {
-//     start(letsPlay);
+//     start();
 // });
 
-let letsPlay = true;
-function start(bool){
+
+function start(){
     createPin();
     createRealEnemy();
   if (!requestId){
@@ -526,9 +526,9 @@ function stop(){
     untransformBall();
     removeAll(allPins);
     removeAll(allEnemies);
-    up = true;
     left = false;
     right = false;
+    go = true;
     createPinInterval = 5000;
     createEnemyInterval = 6000;
     arenaLeft = arena.offsetLeft;
@@ -541,7 +541,6 @@ function stop(){
     wdthSwitch = true;
     ballLeft = ((arenaLeft + arenaRight)/2);
     ballTop = arenaHeight+50;
-    go = true;
     energy = 100;
     increaseEnergyBar();
     endGame.style.display = "none";
